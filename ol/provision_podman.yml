@@ -34,3 +34,15 @@
       when: ansible_distribution == 'OracleLinux' and ansible_distribution_major_version == '9'
       retries: 5
       delay: 10
+
+    - name: Install Oracle Linux 10 container tools packages
+      ansible.builtin.dnf:
+        name:
+          - podman
+          - podman-docker
+          - conntrack
+          - curl
+        state: present
+      when: ansible_distribution == 'OracleLinux' and ansible_distribution_major_version == '10'
+      retries: 5
+      delay: 10
