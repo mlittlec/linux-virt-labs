@@ -4,7 +4,7 @@
 
 Oracle Cloud Native Environment (Oracle CNE) is a fully integrated suite for developing and managing cloud-native applications. The Kubernetes module is the core module. It deploys and manages containers and automatically installs and configures CRI-O, runC, and Kata Containers. CRI-O manages the container runtime for a Kubernetes cluster, which may be either runC or Kata Containers.
 
-## Deploy Oracle CNE
+## Deploy Oracle CNE Using These Ansible Playbooks
 
 **Note:** If running in your own tenancy, read the `linux-virt-labs` GitHub project [README.md](https://github.com/oracle-devrel/linux-virt-labs) and complete the prerequisites before deploying the lab environment.
 
