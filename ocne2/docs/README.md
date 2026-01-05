@@ -1,10 +1,12 @@
-# Deploy Oracle Cloud Native Environment
+# Deploy Oracle Cloud Native Environment 2
 
 ## Introduction
 
 Oracle Cloud Native Environment (Oracle CNE) is a fully integrated suite for developing and managing cloud-native applications. The Kubernetes module is the core module. It deploys and manages containers and automatically installs and configures CRI-O, runC, and Kata Containers. CRI-O manages the container runtime for a Kubernetes cluster, which may be either runC or Kata Containers.
 
-## Deploy Oracle CNE Using These Ansible Playbooks
+---
+
+## Deploy Oracle CNE 2 Using These Ansible Playbooks
 
 **Note:** If running in your own tenancy, read the `linux-virt-labs` GitHub project [README.md](https://github.com/oracle-devrel/linux-virt-labs) and complete the prerequisites before deploying the lab environment.
 
@@ -69,29 +71,29 @@ Oracle Cloud Native Environment (Oracle CNE) is a fully integrated suite for dev
 
    c. The default values (see `defaults.yml`) can be overridden by creating a separate file with the revised definition to be created. This example deploys an Oracle Linux 9 (`os_version: 9`) instance with 8 CPUs (`instance_ocpus: 8`) and 128Mb memory (`instance_memory: 128`)  as well as increasing the boot volume size to be 256 Gb (`boot_volume_size_in_gbs: 256`).
 
-   d. Increase the Boot volume size, install libvirt, and use Oracle Linux 9.
+      - i. Increase the Boot volume size, install libvirt, and use Oracle Linux 9.
 
-      ```shell
-      cat << EOF | tee instances.yml > /dev/null
-      compute_instances:
-        1:
-          instance_name: "ocne"
-          type: "server"
-          instance_ocpus: 8
-          instance_memory: 128
-          boot_volume_size_in_gbs: 256
-      ocne_type: "libvirt"
-      install_ocne_rpm: true
-      update_all: true
-      os_version: "9"
-      EOF
-      ```
+         ```shell
+         cat << EOF | tee instances.yml > /dev/null
+         compute_instances:
+         1:
+            instance_name: "ocne"
+            type: "server"
+            instance_ocpus: 8
+            instance_memory: 128
+            boot_volume_size_in_gbs: 256
+         ocne_type: "libvirt"
+         install_ocne_rpm: true
+         update_all: true
+         os_version: "9"
+         EOF
+         ```
 
-   e. Deploy a single Oracle Linux 9 instance configured using the custom configuration created in `instances.yml`:
+      - ii. Deploy a single Oracle Linux 9 instance configured using the custom configuration created in `instances.yml`:
 
-      ```shell
-      ansible-playbook create_instance.yml -e localhost_python_interpreter="/usr/bin/python3.6" -e "@instances.yml"
-      ```
+         ```shell
+         ansible-playbook create_instance.yml -e localhost_python_interpreter="/usr/bin/python3.6" -e "@instances.yml"
+         ```
 
    **Note:** The free lab environment requires the extra variable `localhost_python_interpreter`, which sets `ansible_python_interpreter` for plays running on localhost. This variable is needed because the environment installs the RPM package for the Oracle Cloud Infrastructure SDK for Python, located under the python3.6 modules. Either remove, or update this variable to match your system's requirements.
 
@@ -131,30 +133,29 @@ Oracle Cloud Native Environment (Oracle CNE) is a fully integrated suite for dev
 
 ```markdown
 ├── ocne2
-│   ├── block.md
-│   ├── build.md
-│   ├── create_fss.md
-│   ├── create_instance.md
-│   ├── default_vars.md
-│   ├── delete_fss.md
-│   ├── deploy_ocne_libvirt.md
-│   ├── deploy_ocne_none.md
-│   ├── deploy_ocne_oci.md
-│   ├── fss_deployments.md
-│   ├── host_setup.md
-│   ├── provision_podman.md
-│   ├── README-Revised.md
-│   ├── requirements.md
-│   ├── templates
-│   │   ├── egress_security_rules.j2.md
-│   │   ├── fss_pod.j2.md
-│   │   ├── fss_pv.j2.md
-│   │   ├── fss_pvc.j2.md
-│   │   ├── fss_vars.j2.md
-│   │   ├── ingress_security_rules.j2.md
-│   │   └── oci_vars.j2.md
-│   └── update_all_rpms.md
-└── README.md
+    ├── block.md
+    ├── build.md
+    ├── create_fss.md
+    ├── create_instance.md
+    ├── default_vars.md
+    ├── delete_fss.md
+    ├── deploy_ocne_libvirt.md
+    ├── deploy_ocne_none.md
+    ├── deploy_ocne_oci.md
+    ├── fss_deployments.md
+    ├── host_setup.md
+    ├── provision_podman.md
+    ├── README-Revised.md
+    ├── requirements.md
+    ├── update_all_rpms.md
+    └── templates
+        ├── egress_security_rules.j2.md
+        ├── fss_pod.j2.md
+        ├── fss_pv.j2.md
+        ├── fss_pvc.j2.md
+        ├── fss_vars.j2.md
+        ├── ingress_security_rules.j2.md
+        └── oci_vars.j2.md 
 ```
 
 ---
@@ -190,4 +191,3 @@ Oracle Cloud Native Environment (Oracle CNE) is a fully integrated suite for dev
 ---
 
 For troubleshooting, edge use cases, or advanced onboarding, see individual `.md` files in this directory.
-

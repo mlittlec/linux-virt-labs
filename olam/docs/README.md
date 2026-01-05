@@ -1,4 +1,4 @@
-# Oracle Linux Automation Manager (OLAM) – Lab Playbook & Template Documentation
+# Deploy Oracle Linux Automation Manager (OLAM) – Lab Playbook & Template Documentation
 
 ## Overview
 

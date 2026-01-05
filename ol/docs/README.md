@@ -1,4 +1,4 @@
-# Oracle Linux Lab Automation – Playbooks & Template Documentation
+# Deploy Oracle Linux – Playbooks & Template Documentation
 
 ## Overview
 
