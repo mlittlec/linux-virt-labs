@@ -121,41 +121,50 @@ Oracle Cloud Native Environment (Oracle CNE) is a fully integrated suite for dev
 | [provision_podman.md](./provision_podmam.md) | Install Podman and container tools for OCI/Linux |
 | [requirements.md](./requirements.md) | Ansible Galaxy collections needed for all playbooks |
 | [update_all_rpms.md](./update_all_rpms.md) | Update all OS packages and reboot as needed |
-| [templates/egress_security_rules.j2.md](./templates/egress_security_reules.j2.md) | Jinja2 template for outbound network security rules (exported as YAML var file) |
-| [templates/ingress_security_rules.j2.md](./templates/ingress_security_rules.j2.md) | Jinja2 template for inbound network security rules (exported as YAML var file) |
-| [templates/fss_pv.j2.md](./templates/fss_pv.j2.md) | Template for Kubernetes PersistentVolume integrating OCI FSS. |
-| [templates/fss_pvc.j2.md](./templates/fss_pvc.j2.md) | Template for Kubernetes PersistentVolumeClaim (PVC) for FSS |
-| [templates/fss_pod.j2.md](./templates/fss_pod.j2.md) | Template for sample/test K8s Pod using the FSS PVC |
-| [templates/fss_vars.j2.md](./templates/fss_vars.j2.md) | Template for storing FSS variable output during provisioning |
-| [templates/oci_vars.j2.md](./templates/oci_vars.j2.md) | Template for storing key OCI variables as a YAML snippet |
+
+---
+
+## Jinja2 Templates
+
+| Template | Purpose / Usage |
+| --- | --- |
+| [egress_security_rules.j2.md](./templates/egress_security_reules.j2.md) | Jinja2 template for outbound network security rules (exported as YAML var file) |
+| [ingress_security_rules.j2.md](./templates/ingress_security_rules.j2.md) | Jinja2 template for inbound network security rules (exported as YAML var file) |
+| [fss_pv.j2.md](./templates/fss_pv.j2.md) | Template for Kubernetes PersistentVolume integrating OCI FSS. |
+| [fss_pvc.j2.md](./templates/fss_pvc.j2.md) | Template for Kubernetes PersistentVolumeClaim (PVC) for FSS |
+| [fss_pod.j2.md](./templates/fss_pod.j2.md) | Template for sample/test K8s Pod using the FSS PVC |
+| [fss_vars.j2.md](./templates/fss_vars.j2.md) | Template for storing FSS variable output during provisioning |
+| [oci_vars.j2.md](./templates/oci_vars.j2.md) | Template for storing key OCI variables as a YAML snippet |
+
+---
 
 ## Tree Listing
 
 ```markdown
 ├── ocne2
-    ├── block.md
-    ├── build.md
-    ├── create_fss.md
-    ├── create_instance.md
-    ├── default_vars.md
-    ├── delete_fss.md
-    ├── deploy_ocne_libvirt.md
-    ├── deploy_ocne_none.md
-    ├── deploy_ocne_oci.md
-    ├── fss_deployments.md
-    ├── host_setup.md
-    ├── provision_podman.md
-    ├── README-Revised.md
-    ├── requirements.md
-    ├── update_all_rpms.md
+    ├── block.md                          # Add block storage (volumes) to OCI compute instances
+    ├── build.md                          # Launch and configure compute instances in OCI
+    ├── create_fss.md                     # Provision OCI File Storage Service (FSS) components
+    ├── create_instance.md                # Main Orchestration Playbook: Provisions all resources and runs end-to-end lab automation
+    ├── default_vars.md                   # Defines structure, sizing, cluster, user, and feature toggle variables used by all playbooks.
+    ├── delete_fss.md                     # Teardown (delete) FSS components cleanly
+    ├── deploy_ocne_libvirt.md            # Deploy Oracle CNE cluster on local KVM/Libvirt
+    ├── deploy_ocne_none.md               # Configures an OCI Instance ready to Deploy Oracle CNE cluster
+    ├── deploy_ocne_oci.md                # Deploy Oracle CNE cluster directly on OCI infrastructure
+    ├── fss_deployments.md                # Generates Kubernetes manifests for FSS-backed PersistentVolume/Pod
+    ├── host_setup.md                     # Prepares OS/user/SSH/facts on each instance
+    ├── provision_podman.md               # Install Podman and container tools for OCI/Linux
+    ├── README.md                         # This File
+    ├── requirements.md                   # Ansible Galaxy collections needed for all playbooks
+    ├── update_all_rpms.md                # Update all OS packages and reboot as needed
     └── templates
-        ├── egress_security_rules.j2.md
-        ├── fss_pod.j2.md
-        ├── fss_pv.j2.md
-        ├── fss_pvc.j2.md
-        ├── fss_vars.j2.md
-        ├── ingress_security_rules.j2.md
-        └── oci_vars.j2.md 
+        ├── egress_security_rules.j2.md   # Jinja2 template for outbound network security rules (exported as YAML var file)
+        ├── fss_pod.j2.md                 # Template for sample/test K8s Pod using the FSS PVC
+        ├── fss_pv.j2.md                  # Template for Kubernetes PersistentVolume integrating OCI FSS.
+        ├── fss_pvc.j2.md                 # Template for Kubernetes PersistentVolumeClaim (PVC) for FSS
+        ├── fss_vars.j2.md                # Template for storing FSS variable output during provisioning
+        ├── ingress_security_rules.j2.md  # Jinja2 template for inbound network security rules (exported as YAML var file)
+        └── oci_vars.j2.md                # Template for storing key OCI variables as a YAML snippet
 ```
 
 ---

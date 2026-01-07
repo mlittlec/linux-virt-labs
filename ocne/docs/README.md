@@ -25,46 +25,46 @@ All documentation is auto-generated per playbook or template, providing comprehe
 
 ## Playbooks
 
-| Playbook  | Summary | Related Templates / Files |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| build.yml | Launches OCI VM instances, networks, attaches storage and VNICs. | - |
-| ceph_deployments.yml | Renders and distributes Ceph/Rook/CephFS manifests to control plane nodes. | cluster.j2, filesystem.j2, toolbox.j2, vm.j2, storageclass.j2, pvc.j2 |
-| create_fss.yml | Provisions OCI FSS (NFS), exports, and records IDs for use in storage templates. | fss_vars.j2, fss_pv.j2, fss_pvc.j2, fss_pod.j2 |
-| create_instance.yml | Orchestrates full environment spin-up, network/VLAN, image lookup, instance, storage, and registry creation. | oci_vars.j2, ingress/egress_security_rules.j2, default_vars.yml |
-| create_lb.yml | Provisions OCI LB, configures health checks, backend set, exports LB IP to vars. | lb_vars.j2 |
-| create_ocir.yml | Provisions OCI Container Registry and writes config for image integration. | ocir_vars.j2 |
-| create_vlan.yml | Provisions VLAN in OCI/VCN and sets associated security groups. | - |
-| default_vars.yml | Defines default topology, sizing, and feature toggles. | - |
-| delete_fss.yml / delete_lb.yml / delete_ocir.yml | Teardown/removes FSS, Load Balancer, and Registry resources from OCI. | - |
-| deploy_ocne_* | Orchestrate full OCNE cluster install (compact/full/quick/vlan/none). | myenvironment.j2 (in some flows) |
-| fss_deployments.yml | Renders NFS-backed PV, PVC, and test pod manifests from FSS outputs. | fss_pv.j2, fss_pvc.j2, fss_pod.j2 |
-| host_assign_vlan_ip.yml | Assigns static VLAN IPs and builds SSH trust for all nodes. | - |
-| host_setup.yml | Sets up users, keys, directories, and enables passwordless SSH for automation. | -  |
-| ol8_repo_config.yml / ol9_repo_config.yml | Enables/disables YUM repos for OL8/OL9 and OLCNE install/update. | - |
-| preconfig_oci_ccm.yml | Sets OCI CCM env variables in .bashrc for controller/cluster manager integration. | - |
-| provision_istio.yml | Deploys Istio mesh module, renders and applies custom LB setup. | istio_lb.j2 |
-| provision_kubectl.yml | Gives cluster users non-root access to kubectl, copying and exporting config. | - |
-| provision_oci_ccm.yml | Deploys Oracle CCM for dynamic LB/service and cloud integration. | oci_vars.j2 |
-| provision_ocne.yml | Manual path for full cluster install with conditional logic and config export. | myenvironment.j2 |
+| Playbook | Summary | Related Templates / Files |
+| --- | --- | --- |
+| [build.yml](build.md) | Launches OCI VM instances, networks, attaches storage and VNICs. | - |
+| [ceph_deployments.yml](ceph_deployments.md) | Renders and distributes Ceph/Rook/CephFS manifests to control plane nodes. | cluster.j2, filesystem.j2, toolbox.j2, vm.j2, storageclass.j2, pvc.j2 |
+| [create_fss.yml](create_fss.md) | Provisions OCI FSS (NFS), exports, and records IDs for use in storage templates. | fss_vars.j2, fss_pv.j2, fss_pvc.j2, fss_pod.j2 |
+| [create_instance.yml](create_instance.md) | Orchestrates full environment spin-up, network/VLAN, image lookup, instance, storage, and registry creation. | oci_vars.j2, ingress/egress_security_rules.j2, default_vars.yml |
+| [create_lb.yml](create_lb.md) | Provisions OCI LB, configures health checks, backend set, exports LB IP to vars. | lb_vars.j2 |
+| [create_ocir.yml](create_ocir.md) | Provisions OCI Container Registry and writes config for image integration. | ocir_vars.j2 |
+| [create_vlan.yml](create_vlan.md) | Provisions VLAN in OCI/VCN and sets associated security groups. | - |
+| [default_vars.yml](default_vars.md) | Defines default topology, sizing, and feature toggles. | - |
+| [delete_fss.yml](delete_fss.md) / [delete_lb.yml](delete_lb.md) / [delete_ocir.yml](delete_ocir.md) | Teardown/removes FSS, Load Balancer, and Registry resources from OCI. | - |
+| deploy_ocne_* | Orchestrate full Oracle CNE cluster install (compact/full/quick/vlan/none). | myenvironment.j2 (in some flows) |
+| [fss_deployments.yml](fss_deployments.md) | Renders NFS-backed PV, PVC, and test pod manifests from FSS outputs. | fss_pv.j2, fss_pvc.j2, fss_pod.j2 |
+| [host_assign_vlan_ip.yml](host_assign_vlan_ip.md) | Assigns static VLAN IPs and builds SSH trust for all nodes. | - |
+| [host_setup.yml](host_setup.md) | Sets up users, keys, directories, and enables password-less SSH for automation. | - |
+| [ol8_repo_config.yml](ol8_repo_config.md) / [ol9_repo_config.yml](ol9_repo_config.md) | Enables/disables YUM repos for Oracle Linux 8/Oracle Linux 9 and OLCNE install/update. | - |
+| [preconfig_oci_ccm.yml](preconfig_oci_ccm.md) | Sets OCI CCM env variables in .bashrc for controller/cluster manager integration. | - |
+| [provision_istio.yml](provision_istio.md) | Deploys Istio mesh module, renders and applies custom LB setup. | istio_lb.j2 |
+| [provision_kubectl.yml](provision_kubectl.md) | Gives cluster users non-root access to kubectl, copying and exporting config. | - |
+| [provision_oci_ccm.yml](preconfig_oci_ccm.md) | Deploys Oracle CCM for dynamic LB/service and cloud integration. | oci_vars.j2 |
+| [provision_ocne.yml](provision_ocne.md) | Manual path for full cluster install with conditional logic and config export. | myenvironment.j2 |
 
 ---
 
 ## Jinja2 Templates
 
-| Template                  | Purpose / Usage                                               |
-| ------------------------- | ------------------------------------------------------------- |
-| cluster.j2                | CephCluster CR (Rook/Ceph storage)                            |
-| filesystem.j2             | CephFilesystem CR (CephFS persistence)                        |
-| toolbox.j2                | Rook Ceph toolbox pod/deployment for CLI ops/troubleshooting  |
-| vm.j2                     | KubeVirt VM manifest (K8s + OCI image + CephFS + cloud-init)  |
-| storageclass.j2           | StorageClass for dynamic CephFS PV provisioning (rook-cephfs) |
-| pvc.j2 / fss_pvc.j2       | PVCs for CephFS (dynamic/static provisioning flows)           |
-| fss_pv.j2                 | Static PersistentVolume for OCI FSS via CSI                   |
-| fss_pod.j2                | Test/demo pod mounting the above PVC                          |
-| fss_vars.j2 / oci_vars.j2 / lb_vars.j2 / ocir_vars.j2 | Dynamic YAML config/vars generated by playbooks |
-| ingress_security_rules.j2 / egress_security_rules.j2 | Vars for security list rules in OCI, rendered by automation |
-| istio_lb.j2               | OCI LB (internal, flex) setup for Istio Gateway               |
-| myenvironment.j2          | Master configuration file for `olcnectl` environment/module creation   |
+| Template | Purpose / Usage |
+| --- | --- |
+| [cluster.j2](./templates/cluster.j2.md) | CephCluster CR (Rook/Ceph storage) |
+| [filesystem.j2](./templates/filesystem.j2.md) | CephFilesystem CR (CephFS persistence) |
+| [toolbox.j2](./templates/toolbox.j2.md) | Rook Ceph toolbox pod/deployment for CLI ops/troubleshooting |
+| [vm.j2](./templates/vm.j2.md) | KubeVirt VM manifest (K8s + OCI image + CephFS + cloud-init) |
+| [storageclass.j2](./templates/storageclass.j2.md) | StorageClass for dynamic CephFS PV provisioning (rook-cephfs) |
+| [pvc.j2](./templates/pvc.j2.md) / [fss_pvc.j2](./templates/fss_pvc.j2.md) | PVCs for CephFS (dynamic/static provisioning flows) |
+| [fss_pv.j2](./templates/fss_pv.j2.md) | Static PersistentVolume for OCI FSS via CSI |
+| [fss_pod.j2](./templates/fss_pod.j2.md) | Test/demo pod mounting the above PVC |
+| [fss_vars.j2](./templates/fss_vars.j2.md) / [oci_vars.j2](./templates/oci_vars.j2.md) / [lb_vars.j2](./templates/lb_vars.j2.md) / [ocir_vars.j2](./templates/ocir_vars.j2.md) | Dynamic YAML config/vars generated by playbooks |
+| [ingress_security_rules.j2](./templates/ingress_security_rules.j2.md) / [egress_security_rules.j2](./templates/egress_security_rules.j2.md) | Vars for security list rules in OCI, rendered by automation |
+| [istio_lb.j2](./templates/istio_lb.j2.md) | OCI LB (internal, flex) setup for Istio Gateway |
+| [myenvironment.j2](./templates/myenvironment.j2.md) | Master configuration file for `olcnectl` environment/module creation |
 
 ---
 
