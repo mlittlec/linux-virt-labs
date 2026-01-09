@@ -97,7 +97,7 @@ You’ll find an individual Markdown (`.md`) doc for each playbook or template, 
 | - | - | - |
 | [block.yml](./block.md) | Provisions and attaches OCI block storage volumes to instances. | Used by build.yml & create_instance.yml |
 | [build.yml](./build.md) | Automates compute instance launch & storage, inventories hosts. | block.yml |
-| [create_instance.yml](./create_instance.md) | Top-level orchestrator: provisions network, VMs, SSH, and teardown | All major plays/templates |
+| [create_instance.yml](./create_instance.md) | Top-level orchestrator: provisions network, Virtual Machines (VMs), SSH, and teardown | All major plays/templates |
 | [default_vars.yml](./default_vars.md) | Central variable set for all hosts, provisioning, toggles. | Included everywhere |
 | [download_ol_iso.yml](./download_ol_iso.md) | Automates Oracle Linux ISO downloads for local builds. | |
 | [host_setup.yml](./host_setup.md) | Prepares hosts: users, SSH, sudo, locale, retry-on-fail. | |
@@ -125,26 +125,26 @@ You’ll find an individual Markdown (`.md`) doc for each playbook or template, 
 
 ```markdown
 └-─ ol
-    ├── block.md
-    ├── build.md
-    ├── create_instance.md
-    ├── default_vars.md
-    ├── download_ol_iso.md
-    ├── host_setup.md
-    ├── passwordless_setup.md
-    ├── provision_kvm_vm.md
-    ├── provision_kvm.md
-    ├── provision_podman.md
-    ├── provision_vbox.md
-    ├── provision_vnc.md
-    ├── README.md
-    ├── requirements.md
-    ├── update_all_rpms.md
+    ├── block.md                          # Provisions and attaches OCI block storage volumes to instances.
+    ├── build.md                          # Automates compute instance launch & storage, inventories hosts.
+    ├── create_instance.md                # Top-level orchestrator: provisions network, Virtual Machines (VMs), SSH, and teardown.
+    ├── default_vars.md                   # Central variable set for all hosts, provisioning, toggles.
+    ├── download_ol_iso.md                # Automates Oracle Linux ISO downloads for local builds.
+    ├── host_setup.md                     # Prepares hosts: users, SSH, sudo, locale, retry-on-fail.
+    ├── passwordless_setup.md             # Ensures password-less SSH between all hosts.
+    ├── provision_kvm_vm.md               # Provisions/reconfigures KVM VMs by pulling images, defining VMs.
+    ├── provision_kvm.md                  # Installs/configures KVM hypervisor, delegates to `provision_kvm_vm.yml`.
+    ├── provision_podman.md               # Installs Podman/containers, OL8/9+ variant support.
+    ├── provision_vbox.md                 # Sets up Oracle VirtualBox, repo, keys, and extpack.
+    ├── provision_vnc.md                  # Enables TigerVNC/graphical login for remote desktop access.
+    ├── README.md                         # This File.
+    ├── requirements.md                   # Tracks required Galaxy collections for roles/modules.
+    ├── update_all_rpms.md                # Automates dnf update for all packages, safe kernel reboot.
     └── templates
-        ├── egress_security_rules.j2.md
-        ├── ingress_security_rules.j2.md
-        ├── oci_vars.j2.md
-        └── vm_template.j2.md
+        ├── egress_security_rules.j2.md   # Default egress: allow all TCP outbound.
+        ├── ingress_security_rules.j2.md  # Conditional ingress rules for all services (SSH, Nginx, NFS, etc.).
+        ├── oci_vars.j2.md                # Emits OCI resource IDs for automation.
+        └── vm_template.j2.md             # Parameterized libvirt/KVM XML template for VMs.
 ```
 
 ---

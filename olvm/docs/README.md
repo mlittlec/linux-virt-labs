@@ -4,12 +4,12 @@
 
 This directory provides detailed documentation for every Ansible playbook and Jinja2 template found in `linux-virt-labs/olvm/`.
 
-- Each lab file is mapped 1:1 to a Markdown (`.md`) doc for rapid navigation, debugging, and advanced scenario-building.
+- Each file is mapped 1:1 to a Markdown (`.md`) doc for rapid navigation, debugging, and advanced scenario-building.
 - Use this index to onboard, extend, or troubleshoot end-to-end Oracle Linux Virtualization Manager cluster/lab automation.
 
 ---
 
-## Deploy Oracle Linux Virtualization Manager Using These Ansible Playbooks
+<!-- ## Deploy Oracle Linux Virtualization Manager Using These Ansible Playbooks
 
 **Note:** If running in your own tenancy, read the `linux-virt-labs` GitHub project [README.md](https://github.com/oracle-devrel/linux-virt-labs) and complete the prerequisites before deploying the lab environment.
 
@@ -77,7 +77,7 @@ This directory provides detailed documentation for every Ansible playbook and Ji
 
    > **Important:** Wait for the playbook to run successfully and reach the pause task. At this stage of the playbook, the installation of Oracle Cloud Native Environment is complete, and the instances are ready. Take note of the previous play, which prints the public and private IP addresses of the nodes it deploys and any other deployment information needed while running the lab.
 
----
+--- -->
 
 ## Documentation Table
 
@@ -128,36 +128,37 @@ This directory provides detailed documentation for every Ansible playbook and Ji
 
 ```markdown
 └── olvm
-    ├── build.md
-    ├── check_instance_available.md
-    ├── configure_passwordless_ssh.md
-    ├── configure_secondary_nic.md
-    ├── create_block_storage.md
-    ├── create_hostfile_secondary_nic.md
-    ├── create_vlan.md
-    ├── default_vars.md
-    ├── ovirt_add_hosts.md
-    ├── ovirt_add_logical_network.md
-    ├── ovirt_add_storage_domain.md
-    ├── ovirt_check_hosts.md
-    ├── ovirt_connection_test.md
-    ├── ovirt_create_vm_from_template.md
-    ├── ovirt_delete_host.md
-    ├── ovirt_import_template.md
-    ├── ovirt_list_hosts.md
-    ├── provision_instance_basics.md
-    ├── provision_olvm_engine_publickey.md
-    ├── provision_olvm_engine.md
-    ├── provision_vnc.md
-    ├── README.md
-    ├── requirements.md
-    ├── terminate_instance.md
+    ├── build.md                             # Provisions OCI compute instances, VNICs, VLAN, block storage.
+    ├── check_instance_available.md          # Connectivity/fact check for all engine/KVM hosts.
+    ├── configure_passwordless_ssh.md        # Sets up SSH trust between all engine/KVM hosts.
+    ├── configure_secondary_nic.md           # Configures secondary NICs on engine/KVM hosts for cluster/storage.
+    ├── create_block_storage.md              # Attaches OCI block storage to VMs for storage domains.
+    ├── create_hostfile_secondary_nic.md     # Writes secondary NIC hosts aliasing for KVM/engine.
+    ├── create_instance.md                   # Top-level cluster orchestrator—bootstraps infra, nodes, overlay net, etc.
+    ├── create_vlan.md                       # Provisions VLAN & NSG for advanced networking.
+    ├── default_vars.md                      # Variables for all KVM, engine, storage, and cluster config.
+    ├── ovirt_add_hosts.md                   # Adds KVM hosts to the Oracle Linux Virtualization Manager/oVirt engine/cluster.
+    ├── ovirt_add_logical_network.md         # Adds logical network to Oracle Linux Virtualization Manager cluster for segmentation/testing.
+    ├── ovirt_add_storage_domain.md          # Adds storage domains for VMs and ISO images.
+    ├── ovirt_check_hosts.md                 # Verifies KVM/oVirt hosts are online, ready, and registered.
+    ├── ovirt_connection_test.md             # Tests connection/auth to Oracle Linux Virtualization Manager engine before further steps.
+    ├── ovirt_create_vm_from_template.md     # Creates VMs from pre-imported templates.
+    ├── ovirt_delete_host.md                 # Removes KVM hosts from the cluster and decommissions.
+    ├── ovirt_import_template.md             # Imports VM/OVA templates to cluster storage domains.
+    ├── ovirt_list_hosts.md                  # Lists all available KVM/oVirt hosts in the cluster.
+    ├── provision_instance_basics.md         # Core user/SSH/locale prep for all hosts.
+    ├── provision_olvm_engine_publickey.md   # Copies engine pubkey to KVM hosts for trust.
+    ├── provision_olvm_engine.md             # Configures Oracle Linux Virtualization Manager engine & exposes host/cluster for control plane.
+    ├── provision_vnc.md                     # Adds VNC/GUI capability to engine nodes in the lab.
+    ├── README.md                            # This file.
+    ├── requirements.md                      # Ansible Galaxy collection dependencies for cluster automation.
+    ├── terminate_instance.md                # Fully tears down OCI and resets all resource state.
     └── templates
-        ├── answer_file.j2.md
-        ├── egress_security_rules.j2.md
-        ├── etc_hosts_kvm.j2.md
-        ├── ingress_security_rules.j2.md
-        └── oci_vars.j2.md
+        ├── answer_file.j2.md                # Automated installer answers for unattended setups.
+        ├── egress_security_rules.j2.md      # YAML variable: allows all TCP traffic from VMs.
+        ├── etc_hosts_kvm.j2.md              # Generates /etc/hosts entries for secondary-NIC HA labs.
+        ├── ingress_security_rules.j2.md     # YAML variable: allows feature-based ports per scenario.
+        └── oci_vars.j2.md                   # Core OCI resource mapping file for automated flows.
 ```
 
 ---

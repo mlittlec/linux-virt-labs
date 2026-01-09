@@ -121,45 +121,45 @@ This directory contains authoritative, onboarding-focused documentation for ever
 
 ```markdown
 └── olam
-    ├── block.md
-    ├── build.md
-    ├── check_instance_available.md
-    ├── configure_passwordless_ssh.md
-    ├── convert_ansible_inventory.sh.md
-    ├── create_instance.md
-    ├── default_vars.md
-    ├── deploy_olam_cluster.md
-    ├── deploy_olam_none.md
-    ├── deploy_olam_olae.md
-    ├── deploy_olam_single.md
-    ├── deploy_olam_v1.md
-    ├── get_facts.md
-    ├── provision_builder.md
-    ├── provision_free_ipa.md
-    ├── provision_git_server.md
-    ├── provision_instance_basics.md
-    ├── provision_kvm.md
-    ├── provision_pah.md
-    ├── provision_vnc.md
-    ├── README.md
-    ├── requirements.md
-    ├── terminate_instance.md
-    ├── update_all_rpms.md
+    ├── block.md                                # Attaches OCI block storage volumes to compute nodes.
+    ├── build.md                                # Launch and inventory OCI instances, configures storage/net.
+    ├── check_instance_available.md             # Sanity and reachability check for lab/OCI hosts.
+    ├── configure_passwordless_ssh.md           # Sets up password-less SSH trust between all hosts.
+    ├── convert_ansible_inventory.sh.md         # Converts nonstandard Ansible inventories to clustered format.
+    ├── create_instance.md                      # Top-level orchestrator: bootstraps all infra, Oracle Linux Automation Manager, teardown.
+    ├── default_vars.md                         # All central configuration: VM sizing, features, credentials.
+    ├── deploy_olam_cluster.md                  # Multi-node Oracle Linux Automation Manager cluster install (control/execution/db nodes).
+    ├── deploy_olam_none.md                     # No-op for conditional disables or dry-runs.
+    ├── deploy_olam_olae.md                     # Installs ansible-core for basic OLAE only test/dev setups.
+    ├── deploy_olam_single.md                   # Single-control-node Oracle Linux Automation Manager deployment for quickstart/testing.
+    ├── deploy_olam_v1.md                       # Deploys legacy (v1) Oracle Linux Automation Manager for migration/compatibility.
+    ├── get_facts.md                            # Minimal fact gathering utility, prints localhost info.
+    ├── provision_builder.md                    # Builds custom Ansible Builder Execution Environments (EE).
+    ├── provision_free_ipa.md                   # Sets up FreeIPA for SSO/directory integration via role.
+    ├── provision_git_server.md                 # Bootstraps a git server and creates initial repo.
+    ├── provision_instance_basics.md            # Ensures all base users, SSH, tags, and locales are ready.
+    ├── provision_kvm.md                        # Installs KVM/libvirt/cockpit for in-lab virtualization.
+    ├── provision_pah.md                        # Sets up Private Automation Hub (PAH) for collection sharing.
+    ├── provision_vnc.md                        # Installs VNC/GUI on devops-node(s) for remote graphical login.
+    ├── README.md                               # This file.
+    ├── requirements.md                         # Lists all Ansible Galaxy collection requirements.
+    ├── terminate_instance.md                   # Deletes OCI lab VMs/resources and prompts for artifact wipe.
+    ├── update_all_rpms.md                      # Updates all packages, reboots lab hosts as needed.
     └── templates
-        ├── bindep.txt.j2.md
-        ├── egress_security_rules.j2.md
-        ├── execution_environment.yml.j2.md
-        ├── hosts.j2.md
-        ├── ingress_security_rules.j2.md
-        ├── install_ipa.j2.md
-        ├── nginx.conf_v1.j2.md
-        ├── nginx.conf.j2.md
-        ├── oci_vars.j2.md
-        ├── playbook.yml.j2.md
-        ├── receptor_cluster.conf.j2.md
-        ├── receptor.conf.j2.md
-        ├── requirements.txt.j2.md
-        └── requirements.yml.j2.md
+        ├── bindep.txt.j2.md                    # Build/package dependencies for Execution Environments.
+        ├── egress_security_rules.j2.md         # OCI security rule: enables all TCP egress.
+        ├── execution_environment.yml.j2.md     # Ansible Builder EE build context/dependencies.
+        ├── hosts.j2.md                         # Ansible inventory for PAH/single-host setups.
+        ├── ingress_security_rules.j2.md        # Dynamic ingress rules for OCI security—feature toggled.
+        ├── install_ipa.j2.md                   # Shell install script for FreeIPA server.
+        ├── nginx.conf_v1.j2.md                 # Base Nginx config, feature toggled server blocks.
+        ├── nginx.conf.j2.md                    # Base Nginx config, feature toggled server blocks.
+        ├── oci_vars.j2.md                      # Core OCID variables for templates and automation.
+        ├── playbook.yml.j2.md                  # Sample EE task playbook: gets OCI storage namespace.
+        ├── receptor_cluster.conf.j2.md         # Config for multi-node receptor mesh (lab HA/cluster).
+        ├── receptor.conf.j2.md                 # Single node receptor config, group logic.
+        ├── requirements.txt.j2.md              # Python (pip) requirements for EEs.
+        └── requirements.yml.j2.md              # Galaxy collection requirements for EEs.
 ```
 
 ---
